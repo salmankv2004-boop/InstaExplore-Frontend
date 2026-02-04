@@ -26,7 +26,7 @@ export const SocketProvider = ({ children }) => {
 
             fetchInitialData();
 
-            const socketInstance = io("http://localhost:5000", {
+            const socketInstance = io("https://instaexpolre-backend.onrender.com", {
                 query: {
                     userId: user._id,
                 },
