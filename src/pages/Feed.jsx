@@ -27,7 +27,7 @@ export default function Feed() {
 
   return (
     <div className="flex justify-center max-w-[1000px] mx-auto min-h-screen">
-      <div className="flex-1 max-w-[630px] pt-4 md:pt-8 px-0 md:px-4">
+      <div className="flex-1 max-w-[630px] pt-0 md:pt-8 px-0 md:px-4">
         {/* POSTS */}
         {posts.length === 0 ? (
           <div className="text-center py-20 border border-zinc-900 rounded-lg bg-black/40 backdrop-blur-sm">
