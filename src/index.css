@@ -1,0 +1,38 @@
+/* Base Tailwind Imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles */
+@layer base {
+  body {
+    @apply bg-black text-white font-sans antialiased;
+  }
+}
+
+@layer components {
+  .input {
+    @apply w-full bg-zinc-900 border border-zinc-800 rounded-sm px-3 py-2 text-sm text-white focus:outline-none focus:border-zinc-600 transition-colors;
+  }
+
+  .btn {
+    @apply w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1.5 rounded disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-sm;
+  }
+
+  .btn-secondary {
+    @apply w-full bg-zinc-100 text-black font-semibold py-1.5 rounded hover:bg-zinc-200 transition-colors text-sm;
+  }
+}
+
+/* Scrollbar styling for webkit */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-800 rounded-full;
+}
