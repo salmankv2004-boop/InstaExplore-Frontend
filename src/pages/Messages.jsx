@@ -151,8 +151,7 @@ export default function Messages() {
     };
 
     return (
-
-        <div className="flex h-[calc(100vh-140px)] bg-black text-white overflow-hidden rounded-md border border-zinc-800">
+        <div className="flex h-[calc(100vh-130px)] md:h-[calc(100vh-140px)] bg-black text-white overflow-hidden md:rounded-md md:border border-zinc-800">
 
             {/* Sidebar: Conversations List */}
             <div className={`w-full md:w-1/3 border-r border-zinc-800 flex flex-col ${activeChat ? 'hidden md:flex' : 'flex'}`}>

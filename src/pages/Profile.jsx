@@ -78,57 +78,117 @@ export default function Profile() {
   return (
     <div className="max-w-4xl mx-auto p-4 md:p-8">
       {/* HEADER */}
-      <div className="flex flex-col md:flex-row gap-6 md:gap-14 mb-10 items-center md:items-start" id="profile-header">
-        {/* Avatar */}
-        <div className="shrink-0">
-          <img
-            src={user.avatar || DEFAULT_AVATAR}
-            alt="avatar"
-            className="w-24 h-24 md:w-36 md:h-36 rounded-full object-cover border border-zinc-800"
-          />
-        </div>
+      {/* HEADER */}
+      <div className="flex flex-col mb-8 md:mb-10" id="profile-header">
 
-        {/* Info */}
-        <div className="flex-1 space-y-4 md:space-y-5">
-          {/* Top Row: Username + Edit Button */}
-          <div className="flex flex-col md:flex-row items-center gap-4 text-center md:text-left">
-            <h2 className="text-xl md:text-2xl font-light">{user.username}</h2>
-            <div className="flex gap-2">
-              <Link
-                to="/edit-profile"
-                className="bg-zinc-800 hover:bg-zinc-700 px-4 py-1.5 rounded-lg font-semibold text-sm transition-colors"
-                id="edit-profile-btn"
-              >
-                Edit profile
-              </Link>
+        {/* MOBILE VIEW (MD Hidden) */}
+        <div className="md:hidden">
+          {/* Top Bar: Username + Menu */}
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-xl font-bold">{user.username}</h2>
+            <button className="text-white"><FaCog size={20} /></button>
+          </div>
+
+          <div className="flex items-center gap-6 mb-4">
+            {/* Avatar */}
+            <div className="shrink-0">
+              <img
+                src={user.avatar || DEFAULT_AVATAR}
+                alt="avatar"
+                className="w-20 h-20 rounded-full object-cover border border-zinc-800"
+              />
+            </div>
+            {/* Stats */}
+            <div className="flex-1 flex justify-around text-center">
+              <div className="flex flex-col">
+                <strong className="font-bold text-white text-lg">{posts.length}</strong>
+                <span className="text-zinc-400 text-sm">posts</span>
+              </div>
+              <button onClick={() => setShowUserList({ type: 'followers', title: 'Followers' })} className="flex flex-col">
+                <strong className="font-bold text-white text-lg">{user.followers?.length || 0}</strong>
+                <span className="text-zinc-400 text-sm">followers</span>
+              </button>
+              <button onClick={() => setShowUserList({ type: 'following', title: 'Following' })} className="flex flex-col">
+                <strong className="font-bold text-white text-lg">{user.following?.length || 0}</strong>
+                <span className="text-zinc-400 text-sm">following</span>
+              </button>
             </div>
           </div>
 
-          {/* Stats Row */}
-          <div className="flex gap-8 justify-center md:justify-start">
-            <span>
-              <strong className="font-bold text-white">{posts.length}</strong> <span className="text-zinc-300">posts</span>
-            </span>
-            <button
-              onClick={() => setShowUserList({ type: 'followers', title: 'Followers' })}
-              className="hover:opacity-70 transition-opacity"
-            >
-              <strong className="font-bold text-white">{user.followers?.length || 0}</strong> <span className="text-zinc-300">followers</span>
-            </button>
-            <button
-              onClick={() => setShowUserList({ type: 'following', title: 'Following' })}
-              className="hover:opacity-70 transition-opacity"
-            >
-              <strong className="font-bold text-white">{user.following?.length || 0}</strong> <span className="text-zinc-300">following</span>
-            </button>
-          </div>
-
-          {/* Bio Row */}
-          <div className="text-center md:text-left text-sm max-w-md">
-            {user.fullName && <h3 className="font-bold mb-1">{user.fullName}</h3>}
+          {/* Bio */}
+          <div className="text-sm mb-4 px-1">
+            {user.fullName && <h3 className="font-bold">{user.fullName}</h3>}
             <p className="whitespace-pre-wrap text-zinc-100">{user.bio}</p>
           </div>
+
+          {/* Action Buttons */}
+          <div className="flex gap-2">
+            <Link
+              to="/edit-profile"
+              className="flex-1 bg-zinc-800 text-white text-center py-1.5 rounded-lg text-sm font-semibold"
+            >
+              Edit profile
+            </Link>
+            <button className="flex-1 bg-zinc-800 text-white text-center py-1.5 rounded-lg text-sm font-semibold">
+              Share profile
+            </button>
+          </div>
         </div>
+
+        {/* DESKTOP VIEW (Hidden on Mobile) */}
+        <div className="hidden md:flex gap-14 items-start">
+          {/* Avatar */}
+          <div className="shrink-0">
+            <img
+              src={user.avatar || DEFAULT_AVATAR}
+              alt="avatar"
+              className="w-36 h-36 rounded-full object-cover border border-zinc-800"
+            />
+          </div>
+
+          {/* Info */}
+          <div className="flex-1 space-y-5">
+            {/* Top Row: Username + Edit Button */}
+            <div className="flex flex-row items-center gap-4">
+              <h2 className="text-2xl font-light">{user.username}</h2>
+              <div className="flex gap-2">
+                <Link
+                  to="/edit-profile"
+                  className="bg-zinc-800 hover:bg-zinc-700 px-4 py-1.5 rounded-lg font-semibold text-sm transition-colors"
+                  id="edit-profile-btn"
+                >
+                  Edit profile
+                </Link>
+              </div>
+            </div>
+
+            {/* Stats Row */}
+            <div className="flex gap-8">
+              <span>
+                <strong className="font-bold text-white">{posts.length}</strong> <span className="text-zinc-300">posts</span>
+              </span>
+              <button
+                onClick={() => setShowUserList({ type: 'followers', title: 'Followers' })}
+                className="hover:opacity-70 transition-opacity"
+              >
+                <strong className="font-bold text-white">{user.followers?.length || 0}</strong> <span className="text-zinc-300">followers</span>
+              </button>
+              <button
+                onClick={() => setShowUserList({ type: 'following', title: 'Following' })}
+                className="hover:opacity-70 transition-opacity"
+              >
+                <strong className="font-bold text-white">{user.following?.length || 0}</strong> <span className="text-zinc-300">following</span>
+              </button>
+            </div>
+
+            {/* Bio Row */}
+            <div className="text-left text-sm max-w-md">
+              {user.fullName && <h3 className="font-bold mb-1">{user.fullName}</h3>}
+              <p className="whitespace-pre-wrap text-zinc-100">{user.bio}</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       {/* TABS */}
