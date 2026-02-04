@@ -54,7 +54,7 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black text-white">
-      <div className="w-full max-w-sm bg-black p-8 rounded-xl border border-zinc-800 shadow-2xl">
+      <div className="w-full max-w-sm bg-black p-8 md:rounded-xl md:border border-zinc-800 md:shadow-2xl">
         <h1 className="text-4xl font-bold text-center mb-8 italic tracking-tighter">
           InstaExplore
         </h1>

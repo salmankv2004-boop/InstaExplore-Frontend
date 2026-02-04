@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import BottomNav from "../components/BottomNav";
 
 export default function MainLayout({ children }) {
   return (
@@ -14,12 +15,14 @@ export default function MainLayout({ children }) {
         </aside>
 
         {/* CONTENT */}
-        <main className="flex-1 md:ml-64">
+        <main className="flex-1 md:ml-64 pb-16 md:pb-0">
           <div className="max-w-4xl mx-auto px-4 py-6">
             {children}
           </div>
         </main>
       </div>
+
+      <BottomNav />
     </div>
   );
 }
