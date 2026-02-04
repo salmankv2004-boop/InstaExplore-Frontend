@@ -52,7 +52,7 @@ export default function Register() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-black text-white">
-      <div className="w-full max-w-sm bg-black md:border border-zinc-800 p-8 md:rounded-xl md:shadow-2xl">
+      <div className="w-full max-w-sm bg-black md:border border-zinc-800 p-6 md:p-10 md:rounded-xl md:shadow-2xl">
         <h1 className="text-4xl font-bold text-center mb-4 italic tracking-tighter">InstaExplore</h1>
         <p className="text-zinc-500 text-center font-bold text-sm mb-8 leading-tight">
           Sign up to see photos and videos from your friends.

@@ -10,7 +10,7 @@ export default function Navbar() {
   const unreadMessages = notifications.filter(n => !n.isRead && n.type === "message").length;
 
   return (
-    <header className="sticky top-0 z-50 bg-black border-b border-zinc-800">
+    <header className="sticky top-0 z-50 bg-black/85 backdrop-blur-md border-b border-white/10">
       <div className="max-w-6xl mx-auto flex items-center justify-between h-16 px-4">
         <Link to="/" className="text-xl font-bold italic tracking-tighter">
           InstaExplore

@@ -5,8 +5,15 @@
 
 /* Custom Styles */
 @layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   body {
-    @apply bg-black text-white font-sans antialiased;
+    @apply bg-black text-white font-sans antialiased overflow-x-hidden;
+    min-height: 100dvh;
+    overscroll-behavior-y: none;
+    -webkit-touch-callout: none;
   }
 }
 
@@ -35,4 +42,21 @@
 
 ::-webkit-scrollbar-thumb {
   @apply bg-zinc-800 rounded-full;
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+  }
+
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
 }
