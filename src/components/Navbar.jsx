@@ -19,7 +19,7 @@ export default function Navbar() {
         {/* Desktop Search */}
         <div
           onClick={() => navigate("/search")}
-          className="hidden md:flex items-center w-64 px-3 py-1.5 rounded bg-zinc-800 text-zinc-400 cursor-text"
+          className="hidden lg:flex items-center w-64 px-3 py-1.5 rounded bg-zinc-800 text-zinc-400 cursor-text"
         >
           <FaSearch className="mr-2 text-xs" />
           <span className="text-sm">Search</span>
@@ -27,7 +27,7 @@ export default function Navbar() {
 
         <div className="flex items-center gap-4">
           {/* Mobile Messages Icon */}
-          <Link to="/messages" className="md:hidden relative text-white">
+          <Link to="/messages" className="lg:hidden relative text-white">
             <IoChatbubbleEllipsesSharp size={24} />
             {unreadMessages > 0 && (
               <span className="absolute -top-1.5 -right-1.5 flex items-center justify-center bg-red-600 text-white text-[10px] font-bold min-w-[16px] h-[16px] px-1 rounded-full border-2 border-black">
