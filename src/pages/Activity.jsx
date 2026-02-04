@@ -51,7 +51,7 @@ export default function Activity() {
   };
 
   return (
-    <div className="max-w-[600px] mx-auto p-4 md:p-8">
+    <div className="max-w-[600px] mx-auto p-0 md:p-8">
       <h1 className="text-2xl font-bold mb-8">Notifications</h1>
 
       {notifications.length === 0 ? (

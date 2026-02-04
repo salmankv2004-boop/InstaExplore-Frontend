@@ -50,8 +50,8 @@ export default function Create() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-140px)]">
-      <div className="bg-zinc-900 w-full max-w-[800px] aspect-[4/3] rounded-xl overflow-hidden flex flex-col border border-zinc-800 shadow-2xl">
+    <div className="flex items-center justify-center min-h-[calc(100vh-140px)] w-full">
+      <div className="bg-zinc-900 w-full h-full md:h-auto md:max-w-[800px] md:aspect-[4/3] md:rounded-xl overflow-hidden flex flex-col md:border border-zinc-800 md:shadow-2xl">
         {/* HEADER */}
         <div className="h-12 border-b border-zinc-800 flex items-center justify-between px-4">
           {step === 2 ? (
