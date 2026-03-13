@@ -6,8 +6,20 @@ import api from "../api/axios";
 import { toast } from "react-toastify";
 
 export default function Settings() {
-    const [activeTab, setActiveTab] = useState("accounts_center");
+    // On mobile, activeTab being null means "Show Menu". On Desktop, we default to 'accounts_center'.
+    const [activeTab, setActiveTab] = useState(window.innerWidth < 768 ? null : "accounts_center");
     const { user, setUser } = useAuth();
+
+    // Ensure desktop always has a tab selected if resized
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768 && !activeTab) {
+                setActiveTab("accounts_center");
+            }
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [activeTab]);
 
     const handleSettingsUpdate = async (updates) => {
         try {
@@ -21,8 +33,8 @@ export default function Settings() {
 
     return (
         <div className="flex min-h-screen bg-black text-white">
-            {/* Settings Sidebar */}
-            <div className="w-1/3 max-w-sm border-r border-zinc-800 p-6 hidden md:block">
+            {/* Settings Sidebar / Mobile Menu */}
+            <div className={`w-full md:w-1/3 max-w-sm border-r border-zinc-800 p-6 ${activeTab ? 'hidden md:block' : 'block'}`}>
                 <h2 className="text-2xl font-bold mb-8 px-2 tracking-tighter italic">Settings</h2>
 
                 {/* Meta-style Accounts Center Card */}
@@ -66,7 +78,18 @@ export default function Settings() {
             </div>
 
             {/* Content Area */}
-            <div className="flex-1 p-8 overflow-y-auto">
+            <div className={`flex-1 p-4 md:p-8 overflow-y-auto h-[100dvh] pb-20 md:pb-0 ${activeTab ? 'block' : 'hidden md:block'}`}>
+                {/* Mobile Back Button */}
+                <button
+                    onClick={() => setActiveTab(null)}
+                    className="md:hidden mb-6 flex items-center gap-2 text-zinc-400 hover:text-white"
+                >
+                    <div className="p-1 rounded-full bg-zinc-900 border border-zinc-800">
+                        <FaChevronRight className="rotate-180" size={14} />
+                    </div>
+                    <span className="text-sm font-semibold">Settings</span>
+                </button>
+
                 <div className="max-w-xl mx-auto">
                     {activeTab === "accounts_center" && <AccountsCenter user={user} onUpdate={handleSettingsUpdate} />}
                     {activeTab === "privacy" && <PrivacySettings user={user} onUpdate={handleSettingsUpdate} />}

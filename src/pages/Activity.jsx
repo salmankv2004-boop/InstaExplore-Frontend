@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import api from "../api/axios";
 import { Link } from "react-router-dom";
 import { FaHeart, FaComment, FaUserPlus, FaChevronRight, FaEnvelope } from "react-icons/fa";
+import FollowButton from "../components/FollowButton";
 import { useSocket } from "../context/SocketContext";
 
 const DEFAULT_AVATAR = "https://ui-avatars.com/api/?background=333&color=fff&name=User";
@@ -117,12 +118,13 @@ export default function Activity() {
                   Reply
                 </Link>
               ) : n.type === "follow" ? (
-                <Link
-                  to={`/user/${n.sender._id}`}
-                  className="bg-zinc-800 hover:bg-zinc-700 px-4 py-1.5 rounded-lg text-[11px] font-bold transition-colors"
-                >
-                  Follow
-                </Link>
+                <FollowButton
+                  userId={n.sender._id}
+                  isFollowing={n.sender.isFollowing}
+                  isRequested={n.sender.isRequested}
+                  isFollower={true}
+                  className="!px-4 !py-1.5 !text-[11px]"
+                />
               ) : null}
             </div>
           ))}

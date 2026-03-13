@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 
-export default function FollowButton({ userId, isFollowing, isRequested: initialRequested, onToggle }) {
+export default function FollowButton({ userId, isFollowing, isRequested: initialRequested, onToggle, className = "", isFollower = false }) {
   const { user: authUser } = useAuth();
   const [following, setFollowing] = useState(isFollowing);
   const [requested, setRequested] = useState(initialRequested);
@@ -55,9 +55,9 @@ export default function FollowButton({ userId, isFollowing, isRequested: initial
         : requested
           ? "bg-zinc-900 text-zinc-400 border border-zinc-700"
           : "bg-blue-500 hover:bg-blue-600 text-white shadow-lg shadow-blue-500/20"
-        }`}
+        } ${className}`}
     >
-      {loading ? "..." : following ? "Following" : requested ? "Requested" : "Follow"}
+      {loading ? "..." : following ? "Following" : requested ? "Requested" : isFollower ? "Follow Back" : "Follow"}
     </button>
   );
 }

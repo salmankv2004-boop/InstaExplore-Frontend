@@ -29,9 +29,9 @@ export default function EditProfile() {
 
     try {
       const formData = new FormData();
-      formData.append("username", username);
-      formData.append("fullName", fullName);
-      formData.append("bio", bio);
+      formData.append("username", username.trim());
+      formData.append("fullName", fullName.trim());
+      formData.append("bio", bio.trim());
 
       if (avatarFile) {
         formData.append("avatar", avatarFile);
@@ -84,11 +84,15 @@ export default function EditProfile() {
               <label className="block text-sm font-bold mb-2 text-zinc-400">Name</label>
               <input
                 type="text"
+                maxLength={30}
                 className="w-full bg-black border border-zinc-800 rounded-lg py-2 px-4 text-white focus:border-zinc-600 outline-none transition-colors"
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="Full Name"
               />
+              <div className="flex justify-end mt-1">
+                <span className="text-[10px] text-zinc-500">{fullName.length} / 30</span>
+              </div>
               <p className="text-[10px] text-zinc-500 mt-2">Help people discover your account by using the name you're known by: either your full name, nickname, or business name.</p>
             </div>
 
@@ -96,16 +100,21 @@ export default function EditProfile() {
               <label className="block text-sm font-bold mb-2 text-zinc-400">Username</label>
               <input
                 type="text"
+                maxLength={30}
                 className="w-full bg-black border border-zinc-800 rounded-lg py-2 px-4 text-white focus:border-zinc-600 outline-none transition-colors"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Username"
               />
+              <div className="flex justify-end mt-1">
+                <span className="text-[10px] text-zinc-500">{username.length} / 30</span>
+              </div>
             </div>
 
             <div>
               <label className="block text-sm font-bold mb-2 text-zinc-400">Bio</label>
               <textarea
+                maxLength={150}
                 className="w-full bg-black border border-zinc-800 rounded-lg py-2 px-4 text-white focus:border-zinc-600 outline-none transition-colors min-h-[100px]"
                 value={bio}
                 onChange={(e) => setBio(e.target.value)}

@@ -101,14 +101,14 @@ export default function PostModal({ post: initialPost, onClose, onUpdate }) {
     if (!post) return null;
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-10 bg-black/80 backdrop-blur-sm" onClick={onClose}>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-0 md:p-10 bg-black md:bg-black/80 backdrop-blur-sm" onClick={onClose}>
             {/* Close Button (Visible on all screens now, top right) */}
-            <button className="absolute top-6 right-6 text-white hover:text-zinc-300 z-50 transition-colors" onClick={onClose}>
+            <button className="absolute top-4 right-4 md:top-6 md:right-6 text-white hover:text-zinc-300 z-[110] transition-colors drop-shadow-lg" onClick={onClose}>
                 <FaTimes size={28} />
             </button>
 
             <div
-                className="bg-black w-full max-w-[1000px] h-full max-h-[90vh] flex flex-col md:flex-row overflow-hidden border border-zinc-800 rounded-sm"
+                className="bg-black w-full max-w-[1000px] h-full md:max-h-[90vh] flex flex-col md:flex-row overflow-hidden md:border border-zinc-800 rounded-none md:rounded-sm"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* VIDEO / IMAGE SIDE */}

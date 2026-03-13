@@ -73,6 +73,8 @@ export default function Login() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
+            id="email"
+            name="email"
             type="email"
             placeholder="Phone number, username, or email"
             className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-md focus:border-zinc-500 outline-none text-sm transition-all"
@@ -81,6 +83,8 @@ export default function Login() {
           />
 
           <input
+            id="password"
+            name="password"
             type="password"
             placeholder="Password"
             className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-md focus:border-zinc-500 outline-none text-sm transition-all"

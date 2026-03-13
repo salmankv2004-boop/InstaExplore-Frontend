@@ -60,7 +60,7 @@ export default function CreatePost() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 bg-black text-white p-6 rounded-lg border border-zinc-800">
+    <div className="max-w-md mx-auto mt-0 md:mt-10 bg-black text-white p-4 md:p-6 rounded-none md:rounded-lg md:border border-zinc-800">
 
       {/* TABS */}
       <div className="flex border-b border-zinc-800 mb-6">

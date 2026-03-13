@@ -88,11 +88,11 @@ export default function UserListModal({ title, userId, type, onClose, onUpdate }
 
     return (
         <div
-            className="fixed inset-0 z-[110] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+            className="fixed inset-0 z-[110] flex items-end md:items-center justify-center bg-black/80 backdrop-blur-sm p-0 md:p-4"
             onClick={onClose}
         >
             <div
-                className="bg-[#262626] w-full max-w-md rounded-xl overflow-hidden border border-zinc-800 shadow-2xl"
+                className="bg-[#262626] w-full max-w-md h-[80vh] md:h-auto md:max-h-[600px] rounded-t-2xl md:rounded-xl overflow-hidden border-t md:border border-zinc-800 shadow-2xl flex flex-col"
                 onClick={(e) => e.stopPropagation()}
             >
                 {/* Header */}

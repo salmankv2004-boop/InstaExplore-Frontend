@@ -26,7 +26,11 @@ export const SocketProvider = ({ children }) => {
 
             fetchInitialData();
 
-            const socketInstance = io("https://instaexpolre-backend.onrender.com", {
+            const socketUrl = import.meta.env.VITE_API_URL
+                ? import.meta.env.VITE_API_URL.replace("/api", "")
+                : "http://localhost:5000";
+
+            const socketInstance = io(socketUrl, {
                 query: {
                     userId: user._id,
                 },

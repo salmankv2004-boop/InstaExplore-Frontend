@@ -27,7 +27,7 @@ export default function Messages() {
     const urlUserId = searchParams.get("userId");
     const processedUrlRef = useRef(false);
 
-    const { socket, setNotifications: setGlobalNotifications, notifications } = useSocket();
+    const { socket, setNotifications: setGlobalNotifications, notifications, onlineUsers } = useSocket();
 
     useEffect(() => {
         loadConversations();
@@ -151,7 +151,7 @@ export default function Messages() {
     };
 
     return (
-        <div className="flex h-[calc(100vh-130px)] md:h-[calc(100vh-140px)] bg-black text-white overflow-hidden md:rounded-md md:border border-zinc-800">
+        <div className="flex h-[calc(100dvh-130px)] md:h-[calc(100vh-140px)] bg-black text-white overflow-hidden md:rounded-md md:border border-zinc-800">
 
             {/* Sidebar: Conversations List */}
             <div className={`w-full md:w-1/3 border-r border-zinc-800 flex flex-col ${activeChat ? 'hidden md:flex' : 'flex'}`}>
@@ -176,11 +176,16 @@ export default function Messages() {
                                     className={`p-4 flex items-center gap-3 cursor-pointer hover:bg-white/5 transition-colors ${isSelected ? "bg-[#262626]" : ""
                                         }`}
                                 >
-                                    <img
-                                        src={partner.avatar || "https://ui-avatars.com/api/?background=333&color=fff&name=" + partner.username}
-                                        alt={partner.username}
-                                        className="w-14 h-14 rounded-full object-cover border border-zinc-800"
-                                    />
+                                    <div className="relative">
+                                        <img
+                                            src={partner.avatar || "https://ui-avatars.com/api/?background=333&color=fff&name=" + partner.username}
+                                            alt={partner.username}
+                                            className="w-14 h-14 rounded-full object-cover border border-zinc-800"
+                                        />
+                                        {onlineUsers.includes(partner._id) && (
+                                            <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-green-500 border-2 border-black rounded-full"></span>
+                                        )}
+                                    </div>
                                     <div className="flex-1 min-w-0">
                                         <h3 className={`text-sm truncate ${isUnread(partner._id) ? 'font-bold text-white' : 'font-medium text-zinc-300'}`}>
                                             {partner.username}
@@ -218,7 +223,12 @@ export default function Messages() {
                                     alt={activeChat.username}
                                     className="w-8 h-8 rounded-full object-cover border border-zinc-800"
                                 />
-                                <h2 className="font-semibold">{activeChat.username}</h2>
+                                <div>
+                                    <h2 className="font-semibold">{activeChat.username}</h2>
+                                    {onlineUsers.includes(activeChat._id) && (
+                                        <p className="text-xs text-green-500 font-medium">Active now</p>
+                                    )}
+                                </div>
                             </div>
                         </div>
 
